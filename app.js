@@ -58,7 +58,7 @@ app.get('/icecream', async(req, res) => {
         });
     }
 });
-
+//adding another fetch (an http verb = .get) where we change the URL to use '/icecrea/:flavor'
 app.get('/icecream/:flavor', async(req, res) => {
     try {
         const result = await client.query(`
@@ -72,8 +72,10 @@ app.get('/icecream/:flavor', async(req, res) => {
                 logan_licks
             FROM ice_cream
             WHERE
-                flavor = '${req.params.flavor}'
-        `);
+                lower(flavor) = $1`,
+        
+        [req.params.flavor.toLowerCase()]
+        );
 
         console.log(result.rows);
 

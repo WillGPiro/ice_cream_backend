@@ -55,8 +55,8 @@ module.exports = [
     },
     {
         id: 7,
-        flavor: 'Salted Caramel',
-        img_url: 'assets/salted-caramel.jpg',
+        flavor: 'Salted Caramel Chocolate',
+        img_url: 'assets/salted-caramel-chocolate.jpg',
         type: 'Caramel',
         vegan: false,
         will_licks: 6,
