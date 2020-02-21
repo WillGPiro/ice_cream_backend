@@ -1,13 +1,18 @@
 // Load Environment Variables from the .env file
-const cors = require('cors');
+require('dotenv').config();
 
 // Application Dependencies
 const express = require('express');
 // (add cors, pg, and morgan...)
+const cors = require('cors');
+const pg = require('pg');
+const morgan = require('morgan');
 
 // Database Client
 // (create and connect using DATABASE_URL)
-
+const Client = pg.Client;
+const client = new Client(process.env.DATABASE_URL);
+client.connect();
 
 // Application Setup
 const app = express();
@@ -15,10 +20,44 @@ const app = express();
 // app.use(...)
 //this will let us host images on our server
 app.use(express.static('assets'));
+app.use(morgan('dev'));
 app.use(cors());
 
 
 // API Routes
+app.get('/', async(req, res, next) => {
+    try {
+        res.json({
+            welcome: 'home'
+        });
+    } catch (err) {
+        next(err);
+    }
+});
+
+app.get('/icecream', async(req, res) => {
+    try {
+        const result = await client.query(`
+            SELECT
+                id, 
+                flavor, 
+                img_url, 
+                type, 
+                vegan, 
+                will_licks, 
+                logan_licks
+            FROM ice_cream;
+        `);
+
+        console.log(result.rows);
+
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        })
+    }
+});
 
 // http method and path...
 

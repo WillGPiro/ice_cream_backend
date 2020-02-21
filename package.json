@@ -2,12 +2,12 @@
   "name": "ice_cream_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "start:watch": "nodemon server.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "start:watch": "nodemon app.js",
     "create-tables": "node data/create-tables.js",
     "drop-tables": "node data/drop-tables.js",
     "load-seed-data": "node data/load-seed-data.js",
@@ -24,7 +24,7 @@
     "url": "https://github.com/Shaka2Pass/ice_cream_backend/issues"
   },
   "homepage": "https://github.com/Shaka2Pass/ice_cream_backend#readme",
-  "dependencies":{
+  "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
