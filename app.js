@@ -55,17 +55,12 @@ app.get('/icecream', async(req, res) => {
     } catch (err) {
         res.status(500).json({
             error: err.message || err
-        })
+        });
     }
 });
 
 // http method and path...
 
-
-// Start the server
-// (use PORT from .env!)
-const PORT = process.env.PORT;
-
-app.listen(PORT, () => {
-    console.log('server running on PORT', PORT);
-});
+module.exports = {
+    app: app
+};
