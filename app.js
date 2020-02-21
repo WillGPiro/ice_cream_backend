@@ -19,7 +19,7 @@ const app = express();
 // (add middleware utils: logging, cors, static files from public)
 // app.use(...)
 //this will let us host images on our server
-app.use(express.static('assets'));
+app.use('/assets', express.static('assets'));
 app.use(morgan('dev'));
 app.use(cors());
 
