@@ -24,7 +24,7 @@ async function run() {
                 INSERT INTO ice_cream (flavor, img_url, type, vegan, will_licks, logan_licks)
                 VALUES ($1, $2, $3, $4, $5, $6);
                 `,
-                
+                //pass teh values in an array so that pg.client can santize them. 
                 [cold.flavor, cold.img_url, cold.type, cold.vegan, cold.will_licks, cold.logan_licks]);
 
             })

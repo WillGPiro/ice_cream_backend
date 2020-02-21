@@ -17,7 +17,7 @@ async function run() {
         // initiate connecting to db
         await client.connect();
     
-        // run a query to create tables
+        // run a query to create tables || this is a 'schema' which tells us what the table consists of. "NOT NuLL"  = the field exists. SERIAL PRIMARY KEY = just goes in order. ID will be in order. 
         await client.query(`
 
             CREATE TABLE ice_cream (

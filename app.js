@@ -59,6 +59,32 @@ app.get('/icecream', async(req, res) => {
     }
 });
 
+app.get('/icecream/:flavor', async(req, res) => {
+    try {
+        const result = await client.query(`
+            SELECT
+                id, 
+                flavor, 
+                img_url, 
+                type, 
+                vegan, 
+                will_licks, 
+                logan_licks
+            FROM ice_cream
+            WHERE
+                flavor = '${req.params.flavor}'
+        `);
+
+        console.log(result.rows);
+
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
 // http method and path...
 
 module.exports = {
