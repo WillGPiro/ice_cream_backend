@@ -1,6 +1,5 @@
 // Load Environment Variables from the .env file
 
-
 // Application Dependencies
 const express = require('express');
 // (add cors, pg, and morgan...)

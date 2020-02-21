@@ -12,7 +12,7 @@
     "drop-tables": "node data/drop-tables.js",
     "load-seed-data": "node data/load-seed-data.js",
     "recreate-tables": "npm run drop-tables && npm run create-tables",
-    "setup-db": "npm run recreate-tables && npm run load-seed-data",
+    "setup-db": "npm run recreate-tables && npm run load-seed-data"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "url": "https://github.com/Shaka2Pass/ice_cream_backend/issues"
   },
   "homepage": "https://github.com/Shaka2Pass/ice_cream_backend#readme",
-  "dependencies": {
+  "dependencies":{
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
