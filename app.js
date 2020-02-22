@@ -39,14 +39,15 @@ app.get('/icecream', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT
-                id, 
-                flavor, 
-                img_url, 
-                type, 
-                vegan, 
-                will_licks, 
-                logan_licks
-            FROM ice_cream;
+                ic.id, 
+                ic.flavor, 
+                ic.img_url, 
+                t.name "types", 
+                ic.vegan, 
+                ic.will_licks, 
+                ic.logan_licks
+            FROM ice_cream ic
+            JOIN types t on ic.type = t.id;
         `);
 
         console.log(result.rows);
@@ -63,14 +64,15 @@ app.get('/icecream/:flavor', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT
-                id, 
-                flavor, 
-                img_url, 
-                type, 
-                vegan, 
-                will_licks, 
-                logan_licks
-            FROM ice_cream
+                ic.id, 
+                ic.flavor, 
+                ic.img_url, 
+                t.name "types", 
+                ic.vegan, 
+                ic.will_licks, 
+                ic.logan_licks
+            FROM ice_cream ic
+            JOIN types t on ic.type = t.id
             WHERE
                 lower(flavor) = $1`,
         
