@@ -89,6 +89,7 @@ app.get('/icecream/:flavor', async(req, res) => {
     }
 });
 
+// types endpoing created from icecream endpoint, updated query with select * from types
 app.get('/types', async(req, res) => {
     try {
         const result = await client.query(`
