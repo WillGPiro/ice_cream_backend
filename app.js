@@ -93,6 +93,7 @@ app.get('/types', async(req, res) => {
     try {
         const result = await client.query(`
             SELECT
+                id,
                 name
             FROM types;
         `);
