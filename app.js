@@ -20,6 +20,8 @@ const app = express();
 // app.use(...)
 //this will let us host images on our server
 app.use('/assets', express.static('assets'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cors());
 
@@ -100,6 +102,24 @@ app.get('/types', async(req, res) => {
         `);
 
         res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
+//CREATE NEW ICE_CREAM
+app.post('/create', async(req, res) => {
+    try {
+        const result = await client.query(`
+        INSERT INTO ice_cream (flavor, img_url, type, vegan, will_licks, logan_licks)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING *;
+        `,
+        [req.body.flavor, req.body.img_url, req.body.type, req.body.vegan, req.body.will_licks, req.body.logan_licks]);
+
+        res.json(result.rows[0]);
     } catch (err) {
         res.status(500).json({
             error: err.message || err
