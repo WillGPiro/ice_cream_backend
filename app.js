@@ -89,6 +89,22 @@ app.get('/icecream/:flavor', async(req, res) => {
     }
 });
 
+app.get('/types', async(req, res) => {
+    try {
+        const result = await client.query(`
+            SELECT
+                name
+            FROM types;
+        `);
+
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
 // http method and path...
 
 module.exports = {
