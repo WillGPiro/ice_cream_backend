@@ -69,7 +69,7 @@ app.get('/icecream/:flavor', async(req, res) => {
                 ic.id, 
                 ic.flavor, 
                 ic.img_url, 
-                t.name "types", 
+                t.name "type", 
                 ic.vegan, 
                 ic.will_licks, 
                 ic.logan_licks
