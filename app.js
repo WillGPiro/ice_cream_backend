@@ -96,6 +96,34 @@ app.get('/icecream/:flavor', async(req, res) => {
 });
 
 // types endpoint created from icecream endpoint, updated query with select * from types
+app.get('/types/:type', async(req, res) => {
+    try {
+        const result = await client.query(`
+            SELECT
+                ic.id, 
+                ic.flavor, 
+                ic.img_url, 
+                t.name "type", 
+                ic.vegan, 
+                ic.will_licks, 
+                ic.logan_licks
+            FROM ice_cream ic
+            JOIN types t on ic.type = t.id
+            WHERE
+                lower(t.name) = $1`,
+        
+        [req.params.type.toLowerCase()]
+        );
+
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message || err
+        });
+    }
+});
+
+// types endpoing created from icecream endpoint, updated query with select * from types
 app.get('/types', async(req, res) => {
     try {
         const result = await client.query(`
